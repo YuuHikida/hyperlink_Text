@@ -92,12 +92,11 @@ function checkform(item) {
 }
 
 // // フォームをリセット
-// function resetform()
-// {
-//     todo.value = '';
-//     priority.value = '普';
-//     deadline.value = '';
-// };
+function resetform()
+{
+    itemInput.value = '';
+    contentTextarea.value = '';
+};
 
 // //フォームの追加
 // function addform(item)
