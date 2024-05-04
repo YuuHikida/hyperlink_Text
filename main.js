@@ -29,8 +29,8 @@ submit.addEventListener('click',()=>{
     // console.log(item);
     if(checkform(item))
     {
-        resetform();
-        addform(item);
+        //resetform();
+        addform();
     }
     //配列に項目要素だけを要素を追加
     items.push();
@@ -98,27 +98,49 @@ function resetform()
     contentTextarea.value = '';
 };
 
-// //フォームの追加
+// フォームの追加
+function addform() {
+    // input要素を作成
+    const inputElement = document.createElement('input');
+    inputElement.type = 'text';
+    inputElement.value = '';
+    inputElement.placeholder = '項目'; // プレースホルダーを設定
+
+    // input要素をラベルでラップ
+    const labelA = document.createElement('label');
+    labelA.textContent = '項目: '; // ラベルのテキストを設定
+    labelA.appendChild(inputElement); // input要素をラベルに追加
+
+    // textarea要素を作成
+    const textareaElement = document.createElement('textarea');
+    textareaElement.value = '';
+    textareaElement.placeholder = '内容'; // プレースホルダーを設定
+    textareaElement.cols = '50'; // cols属性を設定
+
+    // textarea要素をラベルでラップ
+    const labelB = document.createElement('label');
+    labelB.textContent = '内容: '; // ラベルのテキストを設定
+    labelB.appendChild(textareaElement); // textarea要素をラベルに追加
+
+    // input要素とtextarea要素を追加するdiv要素を作成
+    const formContainer = document.createElement('div');
+    formContainer.classList.add('center-text'); // クラスを追加
+    formContainer.appendChild(labelA);
+    formContainer.appendChild(document.createElement('br')); // <br> 要素を追加
+    formContainer.appendChild(labelB);
+
+    // 登録ボタンの前に追加
+    submit.parentNode.insertBefore(formContainer, submit);
+}
+
+
+// // //フォームの追加
 // function addform(item)
 // {
-//     const tr = document.createElement('tr');
+//     const adderea = document.getElementById('main');
+//     adderea.appendChild = document.createElement('input');
+//     adderea.appendChild = document.createElement('textarea');
     
-//     for (const prop in item) {
-//       const td = document.createElement('td'); // td要素を生成
-//       if(prop == 'done')
-//       {
-//         const checkbox = document.createElement('input');
-//         checkbox.type = 'checkbox';    // type属性をcheckboxに
-//         checkbox.checked = item[prop]; // checked属性を設定
-//         td.appendChild(checkbox);
-//       }
-//       else
-//       {
-//         td.textContent = item[prop];
-//       }
-//       tr.appendChild(td);  // 生成したtd要素をtr要素に追加
-//     //   console.log(tr);
-//     }
     
-//     table.append(tr);
+
 // }
