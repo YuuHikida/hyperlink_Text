@@ -4,36 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
-  <title>Chapter 14: TODOリスト</title>
+  <title>HyperText</title>
 </head>
 
 <body>
   <main>
     <div id="input">
-      <label>TODO: <input id="todo"></label><br>
-      優先度: <select>
-        <option>低</option>
-        <option selected>普</option>
-        <option>高</option>
-      </select>
-      <label>期日: <input type="date"></label><br>
-      <button id="submit">登録</button>
-    </div>
-
-    <table>
-      <tr>
-        <th id="todoLabel">TODO</th>
-        <th>優先度</th>
-        <th id="dateLabel">期日</th>
-        <th>完了</th>
-      </tr>
-    <tr>
-      <td>こんぬちわ</td>
-      <td>こんぬちわ</td>
-      <td>こんぬちわ</td>
-      <td>こんぬちわ</td>
-    </tr> 
-    </table>
+      <div class="center-text">
+       <label>項目: <input id="item"></label><br>
+       <label>内容: <textarea name = "Content" id="content"  cols="50"></textarea></label>
+       <button id="submit">登録</button>
+      </div>
+   </div>
   </main>
   <script src="main.js"></script>
 </body>
