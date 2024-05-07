@@ -7,15 +7,12 @@ let countnum = 0;
 // 登録ボタン
 const submit = document.getElementById('submit'+countnum);
 
-// const table = document.querySelector('table');     // 表
-// const todo = document.getElementById('todo');      // TODO
-// const priority = document.querySelector('select'); // 優先度
-// const deadline = document.querySelector('input[type="date"]');  // 締切
-// const submit = document.getElementById('submit');  // 登録ボタン
+/*連想配列を入れる配列作って配列に入れ込む用*/
+const memoList = [];
 
 // //ストレージ登録用
-// const storage = localStorage;
-// let list = [];
+const storage = localStorage;
+let list = [];
 
 
 submit.addEventListener('click',()=>{
@@ -32,12 +29,35 @@ submit.addEventListener('click',()=>{
     {
         //resetform();
         addform();
+        
+        items.push(item.itemInput);
+        listConv(itemInput.value,contentTextarea.value);
+        console.log(memoList);
+    }
+    else
+    {
+        ///保存できなかった入力フォームをリセット(項目名)
+        resetform(itemInput,contentTextarea);
     }
     //配列に項目要素だけを要素を追加
-    items.push(item.itemInput);
-    console.log(items);
 
 });
+
+function listConv(itemInput,contentTextarea)
+{
+    //連想配列（保存してハイパーリンク探索用）ß
+    //連想配列へ要素を追加
+    const memo = {
+        item:itemInput,
+        content:contentTextarea,
+        hyperProcess:function()
+        {
+            //ここにハイパーリンクを埋め込む処理
+        }
+    };
+    //連想配列を配列用に変換
+    memoList.push(memo);
+}
 //document.addEventListener('DOMContentLoaded',()=>{
     
 //     // 1. ストレージデータ（JSON）の読み込み
@@ -85,16 +105,26 @@ submit.addEventListener('click',()=>{
 
 // バリデーション
 function checkform(item) {
+    //項目が一致している場合はリターン(後で修正)
+    for(let i = 0; i <items.length;i++)
+     {
+        if( item.itemInput == items[i])
+        {
+            window.alert('同じ項目名が既に存在しています');
+            return false;
+        }
+    }
     if (item.itemInput != '' && item.contentTextarea != '') {
         return true;
     } else {
         window.alert('項目名または内容が空白です');
         return false; 
     }
+    
 }
 
 // // フォームをリセット
-function resetform()
+function resetform(itemInput,contentTextarea)
 {
     itemInput.value = '';
     contentTextarea.value = '';
@@ -156,12 +186,19 @@ function addform() {
         // console.log(item);
         if(checkform(item))
         {
-            //resetform();
+            
             addform();
+            //配列に項目要素だけを要素を追加
+            items.push(item.itemInput);
+            listConv(itemInput.value,contentTextarea.value);
+            console.log(memoList);
         }
-        //配列に項目要素だけを要素を追加
-        items.push(item.itemInput);
-        console.log(items);
+        else
+        {
+            ///保存できなかった入力フォームをリセット(項目名)
+            resetform(itemInput,contentTextarea);
+        }
+
     
     });
     formContainer.appendChild(newButton);
