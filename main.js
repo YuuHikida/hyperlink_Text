@@ -132,22 +132,24 @@ function resetform(itemInput,contentTextarea)
 
 // フォームの追加
 function addform() {
-    
     countnum++;
 
     // input要素を作成
     const inputElement = document.createElement('input');
-    inputElement.type = 'text';
+    inputElement.type = 'text'; // type属性を追加
     inputElement.value = '';
     inputElement.id = 'item'+ countnum;
     inputElement.placeholder = '項目'; // プレースホルダーを設定
 
     // input要素をラベルでラップ
     const labelA = document.createElement('label');
-    labelA.textContent = '項目: '; // ラベルのテキストを設定    
+    labelA.textContent = '項目: '; // ラベルのテキストを設定 
     labelA.appendChild(inputElement); // input要素をラベルに追加
 
-
+    // 改行要素を作成
+    const brTag1 = document.createElement('br');
+    const brTag2 = document.createElement('br');
+    const brTag3 = document.createElement('br');
     // textarea要素を作成
     const textareaElement = document.createElement('textarea');
     textareaElement.value = '';
@@ -162,49 +164,43 @@ function addform() {
 
     // input要素とtextarea要素を追加するdiv要素を作成
     const formContainer = document.getElementById('input');
-    formContainer.classList.add('center-text'); // クラスを追加
-    formContainer.appendChild(labelA);
-    formContainer.appendChild(document.createElement('br')); // <br> 要素を追加
-    formContainer.appendChild(labelB);
-    
 
-    //ボタン作成
+    // フォームの後に改行要素を追加
+    formContainer.appendChild(brTag1);
+
+    // フォーム要素を追加
+    formContainer.appendChild(labelA);
+    formContainer.appendChild(brTag2); // 改行要素を追加
+    formContainer.appendChild(labelB);
+    formContainer.appendChild(brTag3);
+
+    // ボタン作成
     const newButton = document.createElement('button');
+    newButton.type = 'button'; // type属性を追加
     newButton.id = 'submit' + countnum;
-    //新たな登録ボタンにイベントリスナーを追加
+    newButton.textContent = '登録'; // ボタンのテキストを設定
+    // 新たな登録ボタンにイベントリスナーを追加
     newButton.addEventListener('click',()=>{
-        ///ここに処理
         const item = {};
         // 項目と内容の要素を取得する
         const itemInput = document.getElementById('item'+countnum);
         const contentTextarea = document.getElementById('content'+countnum);
         item.itemInput = itemInput.value;
-        console.log(item.itemInput);
-
         item.contentTextarea = contentTextarea.value;
-    
-        // console.log(item);
-        if(checkform(item))
-        {
-            
+
+        if(checkform(item)) {
             addform();
-            //配列に項目要素だけを要素を追加
             items.push(item.itemInput);
             listConv(itemInput.value,contentTextarea.value);
             console.log(memoList);
-        }
-        else
-        {
-            ///保存できなかった入力フォームをリセット(項目名)
+        } else {
             resetform(itemInput,contentTextarea);
         }
-
-    
     });
+    
+    // ボタンをフォームの直後に追加
     formContainer.appendChild(newButton);
-
 }
-
 
 // // //フォームの追加
 // function addform(item)
