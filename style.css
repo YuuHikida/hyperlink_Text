@@ -1,5 +1,7 @@
 /*テキストをセンターに*/
 .center-text {
   text-align: center;
-  
 }
+.textarea{
+      display: inline-block;
+    }
