@@ -53,10 +53,28 @@ function listConv(itemInput,contentTextarea)
         hyperProcess:function()
         {
             //ここにハイパーリンクを埋め込む処理
+            listSerch(this.content);
         }
     };
     //連想配列を配列用に変換
+    memo.hyperProcess();
     memoList.push(memo);
+}
+
+function listSerch(content)
+{
+    //配列内捜査
+    if(items.indexOf(content) !== -1)
+    {
+        const index = items.indexOf(content);
+        console.log(index);
+        //文字を入れ替える(今は色を変える処理)
+        content.replace(new RegExp(items[index], 'g'), `<span style="color: ${color};">${targetText}</span>`)
+        //htmlから対象タグを取得
+        //変更
+
+    }
+        
 }
 //document.addEventListener('DOMContentLoaded',()=>{
     
@@ -201,14 +219,3 @@ function addform() {
     // ボタンをフォームの直後に追加
     formContainer.appendChild(newButton);
 }
-
-// // //フォームの追加
-// function addform(item)
-// {
-//     const adderea = document.getElementById('main');
-//     adderea.appendChild = document.createElement('input');
-//     adderea.appendChild = document.createElement('textarea');
-    
-    
-
-// }
