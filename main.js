@@ -63,16 +63,17 @@ function listConv(itemInput,contentTextarea)
 
 function listSerch(content)
 {
+    const index = items.indexOf(content);
     //配列内捜査
-    if(items.indexOf(content) !== -1)
+    if( index !== -1)
     {
-        const index = items.indexOf(content);
         console.log(index);
         //文字を入れ替える(今は色を変える処理)
-        content.replace(new RegExp(items[index], 'g'), `<span style="color: ${color};">${targetText}</span>`)
+        content = content.replace(new RegExp(items[index], 'g'), `<span style="color: red;">${content}</span>`);
+        // content = content.replace(new RegExp(items[index], 'g'), `<span style="color: ${red};">${targetText}</span>`);
         //htmlから対象タグを取得
+        //console.log(content);
         //変更
-
     }
         
 }
